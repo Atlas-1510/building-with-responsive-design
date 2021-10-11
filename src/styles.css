@@ -2,15 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .grid-wrapper {
-    overflow-x: scroll;
+@layer components {
+  .article {
+    @apply w-[80vw] article-utility md:w-full md:h-full;
   }
 
-  .article-grid {
+  .advertisement {
+    @apply w-[96vw] sticky left-[2vw] advertisement-utility md:w-full md:h-full;
+  }
+}
+
+@layer utilities {
+  .article-grid-sm {
     display: inline-grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 2fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 3fr 2fr;
     grid-template-areas:
       "article article article article"
       "ad ad ad ad";
@@ -18,17 +24,38 @@
     padding: 2vw;
   }
 
-  .article-square {
-    width: 80vw;
-    aspect-ratio: 1 / 1;
-    background-color: orange;
+  .article-grid-md {
+    width: 90vw;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 200px);
+    grid-template-areas:
+      "billboard billboard"
+      "billboard billboard"
+      "article-1 ad"
+      "article-2 article-3";
+    gap: 1vw;
   }
 
-  .advertisement {
-    background-color: lightgreen;
-    width: 96vw;
+  .article-utility {
+    aspect-ratio: 1 / 1;
+  }
+
+  .advertisement-utility {
     grid-area: ad;
-    position: sticky;
-    left: 2vw;
+  }
+
+  .billboard {
+    grid-area: billboard;
+  }
+
+  .video-container {
+    width: 100vw;
+    aspect-ratio: 1.16 / 1;
+  }
+
+  .video-suggestion {
+    background: orange;
+    width: 200px;
+    height: 100px;
   }
 }
