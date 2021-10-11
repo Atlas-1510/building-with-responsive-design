@@ -652,12 +652,25 @@ video {
 .article-grid {
   display: inline-grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 1rem;
-  padding: 1rem;
+  grid-template-rows: 2fr 1fr;
+  grid-template-areas:
+      "article article article article"
+      "ad ad ad ad";
+  gap: 2vw;
+  padding: 2vw;
 }
 
 .article-square {
   width: 80vw;
   aspect-ratio: 1 / 1;
   background-color: orange;
+}
+
+.advertisement {
+  background-color: lightgreen;
+  width: 96vw;
+  grid-area: ad;
+  position: -webkit-sticky;
+  position: sticky;
+  left: 2vw;
 }
