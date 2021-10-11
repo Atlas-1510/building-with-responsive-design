@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @layer components {
-  .article-grid {
-    @apply article-grid-sm md:article-grid-md lg:article-grid-lg;
+  .article-layout {
+    @apply article-flexbox md:article-grid-md lg:article-grid-lg;
   }
 
   .article {
@@ -12,11 +12,23 @@
   }
 
   .advertisement {
-    @apply advertisement-sm md:advertisement-md lg:advertisement-lg;
+    @apply md:advertisement-md lg:advertisement-lg;
+  }
+
+  /* Advertisement-sm is separated from advertisement class as on small screen a second
+  div is used to show the ad below the flexbox. The original ad is hidden in the flexbox on sm screens. */
+  .advertisement-sm {
+    @apply advertisement-sm h-[20vh] m-[2vw];
   }
 }
 
 @layer utilities {
+  .article-flexbox {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
   .article-grid-sm {
     display: inline-grid;
     gap: 2vw;
@@ -26,6 +38,15 @@
     grid-template-areas:
       "article article article article"
       "ad ad ad ad";
+  }
+
+  ::-webkit-scrollbar {
+    background: transparent;
+    width: 0;
+    height: 0;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
   }
 
   .article-grid-md {
@@ -56,7 +77,13 @@
 
   .article-sm {
     aspect-ratio: 1 / 1;
+    scroll-snap-align: center;
     width: 80vw;
+    margin-right: 2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
   }
 
   .article-md {
@@ -85,17 +112,12 @@
     height: 100%;
   }
 
-  .advertisement-sm {
-    width: 96vw;
-    position: sticky;
-    left: 2vw;
-    grid-area: ad;
-  }
-
   .advertisement-md {
     width: 100%;
     height: 100%;
     grid-area: ad;
+    display: flex;
+    margin: 0;
   }
 
   .advertisement-lg {
